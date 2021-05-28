@@ -38,3 +38,27 @@ console.log(binarySearch(input, 12));
 console.log(binarySearch(input, -1));
 console.log(binarySearch(input, 24));
 console.log(binarySearch(input, 9));
+
+
+//more efficient way compared to the code above
+function binarySearch(input, target, left = 0, right = input.length - 1) {
+    
+    if(left > right) {
+        return false
+    }
+
+    midpoint = Math.floor((right+left)/2)
+
+    if(target == input[midpoint]) {
+        return true;
+    }
+
+    if(target < input[midpoint]) {
+        right = midpoint - 1 ;
+        return binarySearch(input,target,left,right);
+    }
+    else if(target > input[midpoint]) {
+        left = midpoint + 1;
+        return binarySearch(input,target,left,right)
+    }
+}
