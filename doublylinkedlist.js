@@ -112,9 +112,41 @@ class DLL{
         }
 
         console.log(output);
-
     }
+
+    reverse(){
+    var prev = null;
+    var current = this.head;
+    var next = null;
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        this.head = prev;
+    }
+    recursiveReverse(){
+        var prev = null;
+        var current = this.head;
+        var next = null;
+
+        recursionDLL(current,prev,next);
+        this.head = prev;
+    }
+} 
     
+function recursionDLL(current,prev, next){
+    if(current == null){
+        return
+    }
+
+    next = current.next;
+    current.next = prev;
+    prev = current;
+    current = next;
+    
+    return recursionDLL(current,prev, next)
 }
 
 var dLL = new DLL();
@@ -125,6 +157,8 @@ dLL.addFront(4);
 dLL.addFront(5);
 dLL.addFront(6);
 dLL.print();
-dLL.size();
+dLL.reverse();
+//dLL.recursiveReverse()
+dLL.print()
 
 
